@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbatuShop - Beranda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">AmbatuShop</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="products.html">Semua Produk</a></li>
+                <li><a href="cart.html">Keranjang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="banner">
+            <img src="assets/images/banner2.jpg" alt="Banner Promo">
+        </div>
+        <h2>Produk Terlaris</h2>
+        <div class="best-sellers">
+            <div class="product-card">
+                <img src="assets/images/IPhone14.png" alt="Produk 1">
+                <h3>Iphone14</h3>
+                <p>Rp 12.000.000</p>
+                <button onclick="addToCart('Iphone14', 12000000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="assets/images/IPhone15.png" alt="Produk 2">
+                <h3>Iphone 15 </h3>
+                <p>Rp 14.199.000</p>
+                <button onclick="addToCart('Iphone15', 14199000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="assets/images/VivoX80.png" alt="Produk 3">
+                <h3>VivoX80</h3>
+                <p>Rp 8.999.000</p>
+                <button onclick="addToCart('HP 3', 8999000)">Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="assets/images/SamsungS24.png" alt="Produk 4">
+                <h3>Samsung S24</h3>
+                <p>Rp 11.999.000</p>
+                <button onclick="addToCart('Samsung S24', 11999000)">Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 AmbatuShop. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

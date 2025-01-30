@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbatuShop - Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">AmbatuShop</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="products.html">Semua Produk</a></li>
+                <li><a href="cart.html">Keranjang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="checkout">
+        <h2>Checkout</h2>
+        <form id="checkout-form">
+            <label for="name">Nama Lengkap:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address">Alamat Rumah:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <label for="payment">Pilih Metode Pembayaran:</label>
+            <select id="payment" name="payment" required>
+                <option value="COD">COD (Bayar di Tempat)</option>
+                <option value="transfer">Transfer Bank</option>
+                <option value="debit">Kartu Debit</option>
+                <option value="credit">Kartu Kredit</option>
+            </select>
+            
+            <div id="credit-details" class="payment-details" style="display: none;">
+                <label for="card-number">Nomor Kartu:</label>
+                <input type="text" id="card-number" name="card-number" maxlength="16" required>
+                
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3" required>
+                
+                <label for="exp-date">Tanggal Exp:</label>
+                <input type="month" id="exp-date" name="exp-date" required>
+            </div>
+    
+            <div id="transfer-details" class="payment-details" style="display: none;">
+                <p><strong>No Rekening:</strong> 1234566776</p>
+                <p><strong>Nama:</strong> AMBAAAhu</p>
+                <p><strong>Bank:</strong> NG</p>
+            </div>
+            <button type="submit">Bayar Sekarang</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 AmbatuShop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('payment').addEventListener('change', function() {
+            let creditDetails = document.getElementById('credit-details');
+            let transferDetails = document.getElementById('transfer-details');
+
+            creditDetails.style.display = this.value === 'credit' ? 'block' : 'none';
+            transferDetails.style.display = this.value === 'transfer' ? 'block' : 'none';
+        });
+
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const payment = document.getElementById('payment').value;
+            
+            if (payment === 'credit') {
+                const cardNumber = document.getElementById('card-number').value;
+                const cvv = document.getElementById('cvv').value;
+                const expDate = document.getElementById('exp-date').value;
+                
+                if (!cardNumber || !cvv || !expDate) {
+                    alert('Harap isi semua detail kartu kredit!');
+                    return;
+                }
+            }
+
+            alert('Pembayaran berhasil! Terima kasih telah berbelanja di AmbatuShop.');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

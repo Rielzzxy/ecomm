@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AmbatuShop - Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">AmbatuShop</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="products.html">Semua Produk</a></li>
+                <li><a href="cart.html">Keranjang</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="checkout">
+        <h2>Checkout</h2>
+        <form id="checkout-form">
+            <label for="name">Nama Lengkap:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="address">Alamat Rumah:</label>
+            <textarea id="address" name="address" rows="4" required></textarea>
+
+            <label for="payment">Pilih Metode Pembayaran:</label>
+            <select id="payment" name="payment" required>
+                <option value="COD">COD (Bayar di Tempat)</option>
+                <option value="transfer">Transfer Bank</option>
+                <option value="debit">Kartu Debit</option>
+                <option value="credit">Kartu Kredit</option>
+            </select>
+
+            <button type="submit">Bayar Sekarang</button>
+        </form>
+
+        <div id="receipt" class="receipt" style="display: none;">
+            <h3>Detail Pembelian</h3>
+            <p><strong>Nama:</strong> <span id="receipt-name"></span></p>
+            <p><strong>Alamat:</strong> <span id="receipt-address"></span></p>
+            <p><strong>Metode Pembayaran:</strong> <span id="receipt-payment"></span></p>
+            <p><strong>Total Pembayaran:</strong> Rp <span id="receipt-total"></span></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 AmbatuShop. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Ambil data dari form
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const payment = document.getElementById('payment').value;
+
+            // Ambil total harga dari keranjang
+            const cart = getCartFromLocalStorage();
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+            // Tampilkan nota pembelian
+            document.getElementById('receipt-name').textContent = name;
+            document.getElementById('receipt-address').textContent = address;
+            document.getElementById('receipt-payment').textContent = payment;
+            document.getElementById('receipt-total').textContent = total.toLocaleString();
+            document.getElementById('receipt').style.display = 'block';
+
+            // Reset keranjang
+            localStorage.removeItem('cart');
+            alert('Pembelian berhasil! Keranjang telah dikosongkan.');
+
+            // Redirect ke halaman utama setelah 5 detik
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 10000);
+        });
+    </script>
+</body>
+</html>

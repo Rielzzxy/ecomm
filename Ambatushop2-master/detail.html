@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail - AmbatuShop</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ff6600;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        header nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        .product-detail {
+            margin-top: 30px;
+        }
+        .product-detail img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background-color: #e65c00;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background-color: #ff6600;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AmbatuShop</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="product.html">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="profile.html">Profile</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container product-detail">
+            <div id="product-container">
+                <!-- Konten produk akan dimasukkan di sini -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 AmbatuShop | Powered by Tokopedia</p>
+    </footer>
+
+    <script>
+        // Data produk
+        const products = {
+            HondaBeat: {
+                name: "Honda Beat",
+                price: "Rp 16.799.000",
+                features: [
+                    "Engine capacity: 110cc",
+                    "Fuel-efficient",
+                    "Compact and easy to ride",
+                    "Modern design with advanced technology"
+                ],
+                image: "assets/images/HondaBeat.jpg"
+            },
+            VivoX80: {
+                name: "Vivo X80",
+                price: "Rp 8.999.000",
+                features: [
+                    "Display: 6.78-inch AMOLED",
+                    "Camera: 50MP + 12MP + 12MP",
+                    "Battery: 4500mAh",
+                    "Processor: MediaTek Dimensity 9000"
+                ],
+                image: "assets/images/VivoX80.png"
+            },
+            VivoT15g: {
+                name: "Vivo T1 5G",
+                price: "Rp 2.999.000",
+                features: [
+                    "Display: 6.58-inch FHD+",
+                    "Processor: Snapdragon 695",
+                    "Battery: 5000mAh",
+                    "5G connectivity"
+                ],
+                image: "assets/images/VivoT15G.png"
+            },
+            S24FE: {
+                name: "Samsung S24 FE",
+                price: "Rp 9.999.000",
+                features: [
+                    "Display: 6.4-inch AMOLED",
+                    "Processor: Exynos 2200",
+                    "Battery: 4500mAh",
+                    "Camera: 12MP + 8MP + 12MP"
+                ],
+                image: "assets/images/S24FE.png"
+            },
+            Iphone14: {
+                name: "Iphone 14",
+                price: "Rp 12.199.00",
+                features: [
+                    "Display: 6.1-inch Super Retina HD",
+                    "Processor: A15 Bionic",
+                    "Battery: 4082mAh",
+                    "Camera: 12MP + 12MP"
+                    ],
+                    image: "assets/images/Iphone14.png"
+            },
+            Iphone15: {
+                name: "Iphone 15",
+                price: "Rp 14.199.000",
+                features: [
+                    "Display: 6.1-inch Super Retina HD",
+                    "Processor: A16 Bionic",
+                    "Battery: 4082mAh",
+                    "Camera: 12MP + 12MP"
+                    ],
+                    image: "assets/images/Iphone15.png"
+            },
+            Xiaomi14T: {
+                name: "Xiaomi 14T",
+                price: "Rp 6.799.000",
+                features: [
+                    "Display: 6.67-inch FHD+",
+                    "Processor: Snapdragon 8 Gen 2",
+                    "Battery: 5000mAh",
+                    "5G connectivity"
+                    ],
+                    image: "assets/images/Xiaomi14T.png"
+            },
+            SamsungA55: {
+                name: "Samsung Galaxy A55",
+                price: "Rp 6.199.000",
+                features: [
+                    "Display: 6.5-inch FHD+",
+                    "Processor: Exynos 1280",
+                    "Battery: 5000mAh",
+                    "5G connectivity"
+                    ],
+                    image: "assets/images/SamsungA55.png"
+            },
+            S24: {
+                name: "Samsung Galaxy S24",
+                price: "Rp 11.999.000",
+                features: [
+                    "Display: 6.1-inch Dynamic AMOLED",
+                    "Processor: Exynos 2400",
+                    "Battery: 4500mAh",
+                    "5G connectivity"
+                    ],
+                    image: "assets/images/SamsungS24.png"
+            }
+
+        };
+
+        // Ambil parameter dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productKey = urlParams.get('product');
+
+        // Pilih elemen container
+        const productContainer = document.getElementById('product-container');
+
+        // Render produk berdasarkan parameter
+        if (productKey && products[productKey]) {
+            const product = products[productKey];
+            productContainer.innerHTML = `
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="${product.image}" alt="${product.name}">
+                    </div>
+                    <div class="col-md-6">
+                        <h2>${product.name}</h2>
+                        <p class="text-muted">${product.price}</p>
+                        <h4>Features:</h4>
+                        <ul>
+                            ${product.features.map(feature => `<li>${feature}</li>`).join('')}
+                        </ul>
+                        <button class="btn btn-primary" onclick="addToCart('${product.name}', '${product.price}')">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+        } else {
+            productContainer.innerHTML = `<p>Product not found!</p>`;
+        }
+
+        // Fungsi untuk menambahkan ke keranjang
+        function addToCart(productName, productPrice) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push({ name: productName, price: productPrice });
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${productName} has been added to your cart!`);
+        }
+    </script>
+</body>
+</html>
